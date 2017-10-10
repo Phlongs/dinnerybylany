@@ -3,23 +3,35 @@
 <head>
     <meta name="viewport" content="width=device-width,user-scalable=no">
     <title>Instagram Portfolio</title>
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Kaushan+Script|Montserrat' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Arvo:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300,100' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/scss" href="css/intro.scss">
     <script type="text/javascript" src="js/modernizr.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
         <img src="images/veggies.jpg" alt="Mountains">
-        <div class="name fancy-font">
+<!--         <div class="name fancy-font">
             Dinner By Lany
-        </div>
+        </div> -->
+
         <div class="titles">
             <h1>Hello! <span>I'm Lany</span></h1>
-            <h2>I love Food</h2>
+            <h1>I am a
+            <span
+             class="txt-rotate"
+             data-period="2000"
+             data-rotate='[ "Chef.", "teacher.", "culinary explorer.", "fun!" ]'></span>
+            </h1>
+            <h2>...and I love food.</h2>
+            <br>
+            <a href="mailto:l.phlong@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
         </div>
         <div class="social">
             <a class="facebook" href="https://www.facebook.com/lanyp">Facebook</a>
-            <a class="twitter" href="#">Twitter</a>
             <a class="instagram" href="https://www.instagram.com/dinnerbylany/">Instagram</a>
         </div>
     </header>
@@ -32,40 +44,85 @@
                         <div class="row photos-wrap">
                         <!-- Instafeed target div -->
                         <div id="instafeed"></div>
-                        <!-- The following HTML will be our template inside instafeed -->
-                        <!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="photo-box">
-                                <div class="image-wrap">
-                                    <img src="images/test_img.jpg">
-                                    <div class="likes">309 Likes</div>
-                                </div>
-                                <div class="description">
-                                    Fantastic Architecture #architecture #testing
-                                    <div class="date">September 16, 2014</div>
-                                </div>
-                            </div>
-                        </div> -->
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <footer>
+<!--     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                <h4>Get in touch</h4>
+                <h4>Contact</h4>
                 <p class="about-text"></p>
                 <a class="contact-now-btn" href="#">Contact Now</a>
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
+
     <section class="footer-bottom">
         2017 &copy; Seila Phlong. All rights reserved.
     </section>
+    <script>
+        var TxtRotate = function(el, toRotate, period) {
+          this.toRotate = toRotate;
+          this.el = el;
+          this.loopNum = 0;
+          this.period = parseInt(period, 10) || 2000;
+          this.txt = '';
+          this.tick();
+          this.isDeleting = false;
+        };
+
+        TxtRotate.prototype.tick = function() {
+          var i = this.loopNum % this.toRotate.length;
+          var fullTxt = this.toRotate[i];
+
+          if (this.isDeleting) {
+            this.txt = fullTxt.substring(0, this.txt.length - 1);
+          } else {
+            this.txt = fullTxt.substring(0, this.txt.length + 1);
+          }
+
+          this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+          var that = this;
+          var delta = 300 - Math.random() * 100;
+
+          if (this.isDeleting) { delta /= 2; }
+
+          if (!this.isDeleting && this.txt === fullTxt) {
+            delta = this.period;
+            this.isDeleting = true;
+          } else if (this.isDeleting && this.txt === '') {
+            this.isDeleting = false;
+            this.loopNum++;
+            delta = 500;
+          }
+
+          setTimeout(function() {
+            that.tick();
+          }, delta);
+        };
+
+        window.onload = function() {
+          var elements = document.getElementsByClassName('txt-rotate');
+          for (var i=0; i<elements.length; i++) {
+            var toRotate = elements[i].getAttribute('data-rotate');
+            var period = elements[i].getAttribute('data-period');
+            if (toRotate) {
+              new TxtRotate(elements[i], JSON.parse(toRotate), period);
+            }
+          }
+          // INJECT CSS
+          var css = document.createElement("style");
+          css.type = "text/css";
+          css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+          document.body.appendChild(css);
+        };
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/instafeed.min.js"></script>

@@ -1,10 +1,4 @@
-/*
-* Custom variables
-*/
-/*
-* Override Bootstrap variables
-*/
-/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -316,16 +310,16 @@ th {
     border: 1px solid #ddd !important;
   }
 }
-@font-face {
+/*@font-face {
   font-family: 'Glyphicons Halflings';
   src: url("bootstrap/glyphicons-halflings-regular.eot");
   src: url("bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
-}
+}*/
 .glyphicon {
   position: relative;
   top: 1px;
   display: inline-block;
-  font-family: 'Glyphicons Halflings';
+  font-family: 'Amatic SC', cursive;
   font-style: normal;
   font-weight: normal;
   line-height: 1;
@@ -6668,6 +6662,7 @@ button.close {
 .visible-print-block {
   display: none !important;
 }
+}
 @media print {
   .visible-print-block {
     display: block !important;
@@ -6737,11 +6732,17 @@ header .name {
   color: white;
 }
 header .titles {
+  font-family: 'Amatic SC', cursive;
   position: absolute;
   bottom: 40%;
   width: 100%;
   text-align: center;
 }
+
+header .titles a {
+  color: white;
+}
+
 @media screen and (min-width: 1200px) {
   header .titles {
     bottom: 50%;
@@ -6784,6 +6785,7 @@ header .social {
   right: 50px;
   overflow: hidden;
 }
+
 header .social a {
   float: left;
   width: 26px;
@@ -6925,3 +6927,4 @@ footer .contact-now-btn:hover {
 .fancy-font {
   font-family: "Kaushan Script", cursive;
 }
+
